@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Battery Tray
+Comment=Battery levels for mouse, headset and keyboard
+Exec=@BIN@
+Icon=battery-good-symbolic
+X-GNOME-Autostart-enabled=true
+NoDisplay=true

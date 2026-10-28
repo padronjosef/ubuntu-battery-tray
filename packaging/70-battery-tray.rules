@@ -1,0 +1,8 @@
+# Let the logged-in user read and write the hidraw nodes Battery Tray talks to.
+# Logitech receivers (HID++)
+KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="046d", TAG+="uaccess"
+# HyperX Cloud III S Wireless (two hardware revisions)
+KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="06be", TAG+="uaccess"
+KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="02cc", TAG+="uaccess"
+# NuPhy Air60 V2 2.4G dongle
+KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="19f5", ATTRS{idProduct}=="3247", TAG+="uaccess"

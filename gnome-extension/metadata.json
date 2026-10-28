@@ -1,0 +1,6 @@
+{
+  "uuid": "battery-tray-left@padronjosef.github.io",
+  "name": "Battery Tray Left",
+  "description": "Moves the Battery Tray indicators to the left side of the top bar, next to the workspace indicator. Other tray icons stay on the right.",
+  "shell-version": ["46"]
+}

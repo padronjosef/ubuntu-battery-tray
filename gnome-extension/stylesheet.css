@@ -1,0 +1,13 @@
+/* Battery Tray indicator while the device is charging: icon and label. */
+#panel .panel-button.battery-tray-charging,
+#panel .panel-button.battery-tray-charging StLabel,
+#panel .panel-button.battery-tray-charging .system-status-icon {
+    color: #57e389;
+}
+
+/* Battery at or below the warning level: icon and label. */
+#panel .panel-button.battery-tray-low,
+#panel .panel-button.battery-tray-low StLabel,
+#panel .panel-button.battery-tray-low .system-status-icon {
+    color: #d00000;
+}
