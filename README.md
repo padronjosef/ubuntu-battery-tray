@@ -33,11 +33,9 @@ sudo apt install python3-gi gir1.2-gtk-3.0 gir1.2-ayatanaappindicator3-0.1 gir1.
 
 **2. Download this repo**
 
-Pick a permanent folder: the autostart entry and the GNOME extension point to it.
-
 ```bash
-git clone https://github.com/padronjosef/ubuntu-battery-tray.git ~/code/ubuntu-battery-tray
-cd ~/code/ubuntu-battery-tray
+git clone https://github.com/padronjosef/ubuntu-battery-tray.git
+cd ubuntu-battery-tray
 ```
 
 **3. Allow access to the devices**
@@ -50,13 +48,22 @@ sudo udevadm control --reload
 sudo udevadm trigger
 ```
 
-**4. Start it on login**
+**4. Install it**
 
 ```bash
 ./install.sh
 ```
 
-This adds an autostart entry and links the GNOME extension that colors the icons and moves them to the left.
+Everything is copied under `~/.local`, the standard place for per-user apps, so you can delete the cloned folder afterwards:
+
+| What | Where |
+|---|---|
+| App | `~/.local/share/battery-tray/` |
+| Command | `~/.local/bin/battery-tray` |
+| Start on login | `~/.config/autostart/battery-tray.desktop` |
+| GNOME extension | `~/.local/share/gnome-shell/extensions/battery-tray-left@padronjosef.github.io/` |
+
+To update later, `git pull` and run `./install.sh` again.
 
 **5. Restart GNOME Shell and enable the extension**
 
@@ -69,7 +76,7 @@ gnome-extensions enable battery-tray-left@padronjosef.github.io
 **6. Run it now**
 
 ```bash
-bin/battery-tray &
+~/.local/bin/battery-tray &
 ```
 
 From now on it starts by itself when you log in.
@@ -82,9 +89,10 @@ The NuPhy keyboard only reports its battery with the custom firmware from [nuphy
 
 ```bash
 gnome-extensions disable battery-tray-left@padronjosef.github.io
-rm ~/.config/autostart/battery-tray.desktop ~/.local/share/gnome-shell/extensions/battery-tray-left@padronjosef.github.io
-sudo rm /etc/udev/rules.d/70-battery-tray.rules
 pkill -f "python3 -m battery_tray"
+rm -rf ~/.local/share/battery-tray ~/.local/bin/battery-tray ~/.config/autostart/battery-tray.desktop \
+  ~/.local/share/gnome-shell/extensions/battery-tray-left@padronjosef.github.io
+sudo rm /etc/udev/rules.d/70-battery-tray.rules
 ```
 
 ---
@@ -139,7 +147,7 @@ The tray (Python, AyatanaAppIndicator) adds a suffix to each indicator title: ` 
 
 ```bash
 python3 -m unittest      # 43 tests, standard library only
-bin/battery-tray         # run in the foreground with logs
+bin/battery-tray         # run this checkout in the foreground with logs
 ```
 
 | Path | |
